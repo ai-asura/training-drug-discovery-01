@@ -1,4 +1,4 @@
-# training-drug-discovery-01
+# Training-drug-discovery-01
 
 <![endif]-->
 
@@ -93,7 +93,7 @@ This project will not only enhance your technical skills but also provide valuab
 
 
 
-### Problem Statement: Intelligent Drug Discovery Insights Extraction
+## Problem Statement: Intelligent Drug Discovery Insights Extraction
 
 #### Overview:
 The goal is to develop a system that utilizes large language models (LLMs) to extract relevant insights from scientific literature and structured data related to drug candidates. The system will take input in the form of research papers, drug candidate information, or clinical trial data and output key insights such as drug mechanisms, potential side effects, and relevant therapeutic targets.
@@ -187,9 +187,9 @@ This system will provide researchers with an efficient way to gather and analyze
 
 
 
-#####################################
 
-### Database Structure, Pipeline Description, and Architecture
+
+## Database Structure, Pipeline Description, and Architecture
 
 #### Database Structure
 
