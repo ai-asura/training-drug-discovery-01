@@ -1,8 +1,7 @@
 # Training-drug-discovery-01
 
-<![endif]-->
 
-### Project Description: Software Engineer Trainee in Drug Discovery
+## Project Description: Software Engineer Trainee in Drug Discovery
 
 #### Project Title: Intelligent Drug Discovery Platform
 
