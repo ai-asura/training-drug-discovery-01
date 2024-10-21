@@ -171,6 +171,7 @@ The data pipeline will involve multiple stages for ingesting, processing, and st
 5. **Frontend Integration**
    - Use React.js to create a user interface that allows researchers to query the database and visualize insights.
    - Some ideas for the frontend design:-
+     ![Upload view](upload_view.png)
    
 
 6. **Continuous Monitoring and Updating**
