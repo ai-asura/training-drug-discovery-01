@@ -1,5 +1,4 @@
-# Training-drug-discovery-01
-
+# Training-drug-discovery-02
 
 ## Project Description: Software Engineer Trainee in Drug Discovery
 
@@ -7,23 +6,23 @@
 
 #### Overview:
 
-As a Software Engineer Trainee, you will contribute to the development of an Intelligent Drug Discovery Platform leveraging state-of-the-art technologies, including OpenAI and other large language models (LLMs), LangChain, and cloud services such as Azure DevOps and AWS. This project aims to streamline and enhance drug discovery processes, providing insights that can accelerate the identification and development of new therapeutic compounds.
+As a Software Engineer Trainee, you will contribute to the development of an Intelligent Drug Discovery Platform leveraging state-of-the-art ML/DL technologies and cloud services such as Azure DevOps and AWS. This project aims to streamline and enhance drug discovery processes, providing insights that can accelerate the identification and development of new therapeutic compounds.
 
 #### Objectives:
 
 - Develop a robust platform for drug discovery that integrates AI-driven insights with traditional methodologies.
 
-- Utilize LLMs to analyze scientific literature and extract relevant information on drug candidates, mechanisms of action, and potential side effects.
+- Utilize ML/DL models to analyze drug information and extract relevant information on the drug candidates.
 
-- Implement data processing and storage solutions using AWS services, including Lambda, EC2, OpenSearch, and DynamoDB.
+- Implement data processing and storage solutions using AWS services, including but not limited to Lambda, EC2 and DynamoDB.
 
 - Collaborate on front-end development using React.js to create an intuitive user interface for researchers and scientists.
 
 #### Technologies and Tools:
 
-- **AI & Machine Learning:** OpenAI, LangChain
+- **AI & Machine Learning:** Scikit-learn,XGBoost,Pytorch,Tensorflow preferred but no restrictions.
 
-- **Cloud Services:** AWS (Lambda, EC2, OpenSearch, DynamoDB), Azure DevOps
+- **Cloud Services:** AWS (Lambda, EC2, DynamoDB), Azure DevOps
 
 - **Programming Languages:** Python for backend development, React.js for frontend development
 
@@ -31,17 +30,15 @@ As a Software Engineer Trainee, you will contribute to the development of an Int
 
 #### Key Responsibilities:
 
-1. **Data Integration:**
+1. **Data Cleaning and EDA:**
 
-- Gather and preprocess datasets from public databases (e.g., PubChem, ChEMBL) and scientific publications.
+- Perform Exploratory Data Analysis on provided data.
 
-- Implement data ingestion pipelines using AWS Lambda for efficient data processing.
+- Gather insights from the data and perform data cleaning & imputation if required.
 
-2. **LLM Utilization:**
-
-- Integrate OpenAI and other LLMs to create natural language processing (NLP) models that can extract valuable insights from unstructured data sources.
-
-- Fine-tune models based on specific drug discovery tasks.
+2. **ML/DL Model development:**
+- Train models based on specific drug discovery tasks.
+- Deploy the best suitable model for the use-case.
 
 3. **Backend Development:**
 
@@ -62,14 +59,7 @@ As a Software Engineer Trainee, you will contribute to the development of an Int
 - Use Azure DevOps for continuous integration and deployment practices, ensuring code quality and version control.
 
 #### Required Datasets:
-
-- **Public Datasets:**
-
-- PubChem: A freely accessible database of chemical molecules and their activities against biological assays.
-
-- ChEMBL: A database of bioactive drug-like small molecules.
-
-- ClinicalTrials.gov: A registry of clinical trials that can provide insights into ongoing research.
+- Dataset and it's description will be provided.
 
 #### Learning Outcomes:
 
@@ -89,104 +79,58 @@ As a Software Engineer Trainee, you will contribute to the development of an Int
 
 This project will not only enhance your technical skills but also provide valuable exposure to the drug discovery industry, enabling you to contribute to meaningful advancements in healthcare.
 
-
-
-
 ## Problem Statement: Intelligent Drug Discovery Insights Extraction
 
 #### Overview:
-The goal is to develop a system that utilizes large language models (LLMs) to extract relevant insights from scientific literature and structured data related to drug candidates. The system will take input in the form of research papers, drug candidate information, or clinical trial data and output key insights such as drug mechanisms, potential side effects, and relevant therapeutic targets.
+The goal is to develop a system that utilizes ML/DL models to extract relevant insights from the provided data related to drug candidates. The system will take input in the form of drug candidate information data and output key insights such as:-
+1. Drug potency (pIC50 value)
+2. Model explainability:- Which of the drug properties (features) had the most impact on the prediction.
 
 #### Input:
-1. **Research Paper Text:** A plain text or structured JSON object containing the text of a research paper.
-2. **Drug Candidate Information:** A JSON object containing details about a drug candidate (e.g., name, chemical structure, phase of development).
-3. **Clinical Trial Data:** A JSON object or structured data that includes trial results, drug names, patient demographics, etc.
+1. **Drug Candidate Information:** A csv file containing details about a drug candidate.
+
+    This dataset consists of 2 different files for a potential drug against the COVID-19 virus. The original file consists of only a SMILES notation and pIC50 constant against the COVID-19 virus for a chemical compound. The second one consists of engineered features using the pubchempy library of Python. This library helps to access the PubChem data. PubChem is a database of millions of chemical compounds. We used this library to fetch the properties of the compounds using their SMILES representation.
+    
+    The dataset is made publically available by the Government of India as a part of their Drug Discovery Hackathon. There are some potential drugs against the COVID-19 virus in this dataset as suggested by the hackathon organisers.
+    
+    ##### Column information:-
+    - CID: Compound ID
+    - SMILES: SMILES notation of the compound
+    - MolecularFormula: Molecular Formula of the compound
+    - MolecularWeight: Molecular weight of the compound
+    - InChI: InChI representation of the compound
+    - InChIKey: InChI ID
+    - UPACName: IUPAC Name of the compound
+    The rest of the columns are chemical features extracted using the `pubchempy` library.
 
 #### Expected Output:
-The output will be a structured JSON object containing extracted insights, such as:
-- Drug Mechanism of Action
-- Potential Side Effects
-- Therapeutic Targets
-- Relevant Literature References
+The output will be a structured prediction csv file containing extracted insights, such as:
+- plc50 values
+- Feature importance values
 
 #### Input Examples:
 
-1. **Research Paper Input:**
-   ```json
-   {
-       "title": "Novel Insights into the Mechanisms of Action of Drug X",
-       "abstract": "Drug X has been shown to inhibit the growth of cancer cells by targeting protein Y and inducing apoptosis. This study explores its potential side effects and therapeutic applications.",
-       "content": "In recent studies, Drug X demonstrated significant effects on tumor growth... It targets protein Y and has potential side effects including nausea and fatigue."
-   }
-   ```
+1. **CSV data input:**
 
-2. **Drug Candidate Information Input:**
-   ```json
-   {
-       "name": "Drug X",
-       "chemical_structure": "C1=CC=C(C=C1)C(C(=O)O)N",
-       "development_phase": "Phase II"
-   }
-   ```
+|CID    |SMILES                                                             |MolecularFormula|
+|-------|-------------------------------------------------------------------|----------------|
+|2744814|ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1     |C21H14Cl2N4OS2  |
+|2821293|CN1N=C(C=C1C(F)(F)F)C1=CC=C(S1)C1=CC=NC(SCC(=O)NC2=CC=C(Cl)C=C2)=N1|C21H15ClF3N5OS2 |
+|2820912|CSC1=C(C(C)=C(S1)C1=NC(C)=CS1)C1=CC=NC(SCC(=O)NC2=CC=C(Cl)C=C2)=N1 |C22H19ClN4OS4   |
 
-3. **Clinical Trial Data Input:**
-   ```json
-   {
-       "trial_id": "NCT01234567",
-       "drug_name": "Drug X",
-       "results": "The trial demonstrated a 30% increase in progression-free survival among patients treated with Drug X.",
-       "patient_demographics": {
-           "age_range": "30-65",
-           "gender": "Both"
-       }
-   }
-   ```
 
+  
 #### Expected Output Examples:
+1. **Prediction CSV data input:**
 
-1. **Insights Extraction from Research Paper:**
-   ```json
-   {
-       "drug_name": "Drug X",
-       "mechanism_of_action": "Inhibits growth by targeting protein Y and inducing apoptosis.",
-       "potential_side_effects": ["nausea", "fatigue"],
-       "therapeutic_targets": ["protein Y"],
-       "references": [
-           "Novel Insights into the Mechanisms of Action of Drug X"
-       ]
-   }
-   ```
-
-2. **Insights Extraction from Drug Candidate Information:**
-   ```json
-   {
-       "drug_name": "Drug X",
-       "development_phase": "Phase II",
-       "chemical_structure": "C1=CC=C(C=C1)C(C(=O)O)N",
-       "additional_insights": "Promising candidate based on Phase II trial results."
-   }
-   ```
-
-3. **Insights Extraction from Clinical Trial Data:**
-   ```json
-   {
-       "trial_id": "NCT01234567",
-       "drug_name": "Drug X",
-       "results_summary": "30% increase in progression-free survival.",
-       "demographics": {
-           "age_range": "30-65",
-           "gender": "Both"
-       },
-       "implications": "Supports the efficacy of Drug X in a diverse patient population."
-   }
-   ```
+|CID    |SMILES                                                             |MolecularFormula|pIC50       |
+|-------|-------------------------------------------------------------------|----------------|------------|
+|2744814|ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1     |C21H14Cl2N4OS2  |-0.477121255|
+|2821293|CN1N=C(C=C1C(F)(F)F)C1=CC=C(S1)C1=CC=NC(SCC(=O)NC2=CC=C(Cl)C=C2)=N1|C21H15ClF3N5OS2 |-1          |
+|2820912|CSC1=C(C(C)=C(S1)C1=NC(C)=CS1)C1=CC=NC(SCC(=O)NC2=CC=C(Cl)C=C2)=N1 |C22H19ClN4OS4   |-1.041392685|
 
 ### Summary:
-This system will provide researchers with an efficient way to gather and analyze critical information from multiple data sources, facilitating informed decision-making in the drug discovery process.
-
-
-
-
+This system will provide researchers with an efficient way to gather and analyze critical information facilitating informed decision-making in the drug discovery process.
 
 ## Database Structure, Pipeline Description, and Architecture
 
@@ -196,69 +140,42 @@ The database will be designed to store and manage data related to drug candidate
 
 ##### 1. **Tables**
 
-- **DrugCandidates**
-  - `id` (Primary Key, UUID)
-  - `name` (String)
-  - `chemical_structure` (Text)
-  - `development_phase` (String)
+- **DrugCandidates (INPUT)**
+  - `CID` (Primary Key, UUID)
+  - `SMILES` (String)
+  - Add all columns in the csv file to the Database
   - `created_at` (Timestamp)
   - `updated_at` (Timestamp)
-
-- **ResearchPapers**
-  - `id` (Primary Key, UUID)
-  - `title` (String)
-  - `abstract` (Text)
-  - `content` (Text)
-  - `publication_date` (Date)
+- **PredictedDrugCandidates (OUTPUT)**
+  - `CID` (Primary Key, UUID)
+  - `plC50` (Float)
+  - Create columns having Feature Importance for each column of the input data.
   - `created_at` (Timestamp)
   - `updated_at` (Timestamp)
-
-- **ClinicalTrials**
-  - `id` (Primary Key, UUID)
-  - `trial_id` (String)
-  - `drug_id` (Foreign Key to DrugCandidates)
-  - `results` (Text)
-  - `patient_demographics` (JSON)
-  - `created_at` (Timestamp)
-  - `updated_at` (Timestamp)
-
-- **ExtractedInsights**
-  - `id` (Primary Key, UUID)
-  - `drug_id` (Foreign Key to DrugCandidates)
-  - `research_paper_id` (Foreign Key to ResearchPapers, Nullable)
-  - `clinical_trial_id` (Foreign Key to ClinicalTrials, Nullable)
-  - `mechanism_of_action` (Text)
-  - `potential_side_effects` (JSON)
-  - `therapeutic_targets` (JSON)
-  - `references` (JSON)
-  - `created_at` (Timestamp)
-
-##### 2. **Relationships**
-- Each **DrugCandidate** can have multiple **ClinicalTrials** and **ExtractedInsights**.
-- Each **ExtractedInsight** can be linked to either a **ResearchPaper** or a **ClinicalTrial**, but not both simultaneously.
-
 ---
 
 #### Pipeline Description
 
 The data pipeline will involve multiple stages for ingesting, processing, and storing data. Here's a high-level overview of the steps involved:
 
-1. **Data Ingestion**
-   - **Source**: Research papers (PDF/Text), Drug candidate information (structured JSON), Clinical trial data (structured JSON).
-   - **Process**: Use ETL (Extract, Transform, Load) tools to extract data from various sources and transform it into a suitable format for storage.
-
-2. **Data Processing**
-   - **Natural Language Processing**: Use LLMs (e.g., OpenAI) to analyze research paper texts and extract insights like mechanisms of action and side effects.
+1. **Data Processing**
+   - **Process**: Use data prepoccesing to transform the data into a suitable format for storage.
    - **Data Validation**: Ensure data integrity and consistency during transformation.
 
 3. **Storage**
-   - Store processed data in respective tables (DrugCandidates, ResearchPapers, ClinicalTrials, ExtractedInsights) in a relational database or a NoSQL database like DynamoDB.
+   - Store processed data in respective tables (DrugCandidates, PredictedDrugCandidates) in a relational database or a NoSQL database like DynamoDB.
 
 4. **API Development**
    - Build RESTful APIs using Python to provide access to stored data and insights for front-end applications.
 
 5. **Frontend Integration**
    - Use React.js to create a user interface that allows researchers to query the database and visualize insights.
+   - Some ideas for the frontend design:-
+     
+     ![Upload view](upload_view.png)
+     ![Input view](input_view.png)
+     ![Output view](output_view.jpg)
+   
 
 6. **Continuous Monitoring and Updating**
    - Implement logging and monitoring to track data ingestion and processing performance.
@@ -275,46 +192,48 @@ The architecture consists of several layers, including data sources, processing 
 ```
 +-------------------+             +-------------------+
 |                   |   Ingest    |                   |
-|   Research Papers +------------>+   Data Ingestion  |
+|   Input csv file  +------------>+   Data Processing |
 |                   |             |                   |
 +-------------------+             +-------------------+
-         |                                    |
-         |                                    |
-         |                                    v
-+-------------------+             +-------------------+
-|                   |             |                   |
-| Clinical Trials   +------------>+   Data Processing  |
-|                   |             |   (NLP, LLMs)     |
-+-------------------+             |                   |
-         |                        +-------------------+
-         |                                    |
-         |                                    v
-+-------------------+             +-------------------+
-|                   |             |                   |
-| Drug Candidates    +------------>+   Data Storage    |
-|                   |             | (Relational/NoSQL)|
-+-------------------+             +-------------------+
-                                          |
-                                          |
-                                          v
-                                 +-------------------+
-                                 |                   |
-                                 |     APIs          |
-                                 |                   |
-                                 +-------------------+
-                                          |
-                                          |
-                                          v
-                                 +-------------------+
-                                 |                   |
-                                 |  React.js Frontend |
-                                 |                   |
-                                 +-------------------+
+                                            |
+                                            |
+                                            v
+                                  +-------------------+
+                                  |                   |                                  
+                                  | Modelling and     |
+                                  | Feature Importance|
+                                  |                   |
+                                  +-------------------+
+                                            |
+                                            |                                            
+                                            v
+                                  +-------------------+
+                                  |                   |
+                                  |   Data Storage    |
+                                  | (Relational/NoSQL)|
+                                  |                   |                                  
+                                  +-------------------+
+                                            |
+                                            |                                            
+                                            v
+                                  +-------------------+
+                                  |                   |
+                                  |        APIs       |
+                                  |                   |
+                                  +-------------------+
+                                            |
+                                            |
+                                            v
+                                  +-------------------+
+                                  |                   |
+                                  | React.js Frontend |
+                                  |                   |
+                                  +-------------------+
 ```
 
 ##### 2. **Key Components**
-- **Data Ingestion**: ETL processes for collecting data from various sources.
-- **Data Processing**: LLMs for extracting insights, using frameworks like LangChain for model integration.
+- **Data Processing**: Pandas, Numpy etc for data preprocessing.
+- **Modelling**: Scikit-learn, XGBoost, Pytorch etc for modelling.
 - **Storage**: AWS DynamoDB for NoSQL or PostgreSQL for relational data.
 - **APIs**: Python Flask or FastAPI for backend development.
 - **Frontend**: React.js for building the user interface.
