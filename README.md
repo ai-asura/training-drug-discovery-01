@@ -174,7 +174,7 @@ The data pipeline will involve multiple stages for ingesting, processing, and st
      
      ![Upload view](upload_view.png)
      ![Input view](input_view.png)
-     ![Output view](output_view.png)
+     ![Output view](output_view.jpg)
    
 
 6. **Continuous Monitoring and Updating**
