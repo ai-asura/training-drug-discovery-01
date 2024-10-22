@@ -183,6 +183,195 @@ The data pipeline will involve multiple stages for ingesting, processing, and st
 
 ---
 
+### Proposed API JSON Structures
+
+#### 1. **Drug Candidates Endpoints**
+
+- **GET /api/drug-candidates**
+  - **Response:**
+    ```json
+    [
+      {
+        "CID": "2744814",
+        "SMILES": "ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1",
+        "MolecularFormula": "C21H14Cl2N4OS2",
+        "MolecularWeight":  "X.XX",
+        "InChI": "InChI=1S/C21H14Cl2N4OS2/c1-13-3-2-12-21(25)20(19(13)23-9-10-24-18(22)15(25)14(12)17(21)26-16-21)4-6-15-8-11-7-5-4/h2-11H,1H3,(H,23,24)",
+        "InChIKey": "XXXXXX",
+        "UPACName": "XXXXXX",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    ]
+    ```
+
+- **GET /api/drug-candidates/{cid}**
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "SMILES": "ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1",
+      "MolecularFormula": "C21H14Cl2N4OS2",
+      "MolecularWeight": "X.XX",
+      "InChI": "InChI=1S/C21H14Cl2N4OS2/c1-13-3-2-12-21(25)20(19(13)23-9-10-24-18(22)15(25)14(12)17(21)26-16-21)4-6-15-8-11-7-5-4/h2-11H,1H3,(H,23,24)",
+      "InChIKey": "XXXXXX",
+      "UPACName": "XXXXXX",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+    ```
+
+- **POST /api/drug-candidates**
+  - **Request Body:**
+    ```json
+    {
+      "SMILES": "ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1",
+      "MolecularFormula": "C21H14Cl2N4OS2",
+      "MolecularWeight": "X.XX",
+      "InChI": "InChI=1S/C21H14Cl2N4OS2/c1-13-3-2-12-21(25)20(19(13)23-9-10-24-18(22)15(25)14(12)17(21)26-16-21)4-6-15-8-11-7-5-4/h2-11H,1H3,(H,23,24)",
+      "InChIKey": "XXXXXX",
+      "UPACName": "XXXXXX"
+    }
+    ```
+
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "SMILES": "ClC1=CC(NC(=O)CSC2=NC=CC(=N2)C2=CSC(=N2)C2=CC=CC=C2)=CC(Cl)=C1",
+      "MolecularFormula": "C21H14Cl2N4OS2",
+      "MolecularWeight": "X.XX",
+      "InChI": "InChI=1S/C21H14Cl2N4OS2/c1-13-3-2-12-21(25)20(19(13)23-9-10-24-18(22)15(25)14(12)17(21)26-16-21)4-6-15-8-11-7-5-4/h2-11H,1H3,(H,23,24)",
+      "InChIKey": "XXXXXX",
+      "UPACName": "XXXXXX",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+    ```
+
+- **PUT /api/drug-candidates/{cid}**
+  - **Request Body:**
+    ```json
+    {
+      "SMILES": "Updated SMILES",
+      "MolecularFormula": "Updated Molecular Formula",
+      "MolecularWeight": "Updated Weight",
+      "InChI": "Updated InChI",
+      "InChIKey": "Updated InChIKey",
+      "UPACName": "Updated Name"
+    }
+    ```
+
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "SMILES": "Updated SMILES",
+      "MolecularFormula": "Updated Molecular Formula",
+      "MolecularWeight": "Updated Weight",
+      "InChI": "Updated InChI",
+      "InChIKey": "Updated InChIKey",
+      "UPACName": "Updated Name",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-02T00:00:00Z"
+    }
+    ```
+
+- **DELETE /api/drug-candidates/{cid}**
+  - **Response:**
+    ```json
+    {
+      "message": "Drug candidate with CID 2744814 has been deleted."
+    }
+    ```
+
+#### 2. **Predicted Drug Candidates Endpoints**
+
+- **GET /api/predicted-drug-candidates**
+  - **Response:**
+    ```json
+    [
+      {
+        "CID": "2744814",
+        "pIC50": -0.477121255,
+        "feature_importance": {
+          "MolecularWeight": 0.35,
+          "OtherFeature1": 0.25,
+          "OtherFeature2": 0.40
+        },
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    ]
+    ```
+
+- **GET /api/predicted-drug-candidates/{cid}**
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "pIC50": -0.477121255,
+      "feature_importance": {
+        "MolecularWeight": 0.35,
+        "OtherFeature1": 0.25,
+        "OtherFeature2": 0.40
+      },
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+    ```
+
+- **POST /api/predicted-drug-candidates**
+  - **Request Body:**
+    ```json
+    {
+      "CID": "2744814",
+      "pIC50": -0.477121255,
+      "feature_importance": {
+        "MolecularWeight": 0.35,
+        "OtherFeature1": 0.25,
+        "OtherFeature2": 0.40
+      }
+    }
+    ```
+
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "pIC50": -0.477121255,
+      "feature_importance": {
+        "MolecularWeight": 0.35,
+        "OtherFeature1": 0.25,
+        "OtherFeature2": 0.40
+      },
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+    ```
+
+- **PUT /api/predicted-drug-candidates/{cid}**
+  - **Request Body:**
+    ```json
+    {
+      "pIC50": -0.500000000,
+      "feature_importance": {
+        "MolecularWeight": 0.30,
+        "OtherFeature1": 0.40,
+        "OtherFeature2": 0.30
+      }
+    }
+    ```
+
+  - **Response:**
+    ```json
+    {
+      "CID": "2744814",
+      "pIC50": -0.500000000,
+      "feature_importance": {
+        "MolecularWeight": 0.30,
+        "OtherFeature1":
+---
 #### Architecture
 
 The architecture consists of several layers, including data sources, processing units, storage, and user interfaces.
